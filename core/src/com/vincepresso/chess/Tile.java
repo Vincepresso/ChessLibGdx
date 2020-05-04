@@ -1,38 +1,27 @@
 package com.vincepresso.chess;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Tile {
+public class Tile extends MapObject{
 	
-	public boolean white;
-	public float x;
-	public float y;
-	public int width;
-	public int height;
 	private Texture texture;
 	private Rectangle bound;
 	
-	public Tile(int x, int y, int width, int height, Texture texture, boolean white) {
+	public Tile(Texture texture) {
 		super();
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
 		this.texture = texture;
-		this.bound = new Rectangle(x, y, width, height);
+		this.bound = new Rectangle();
 	}
 	
-	public boolean isWhite() {
-		return white;
+	public void init() {
+		this.bound.setX((int) this.getProperties().get("x"));
+		this.bound.setY((int) this.getProperties().get("y"));
+		this.bound.setWidth((int) this.getProperties().get("width"));
+		this.bound.setHeight((int) this.getProperties().get("height"));
 	}
-
-	public void setWhite(boolean white) {
-		this.white = white;
-	}
-
-
-
+	
 	public void dispose() {
 		this.texture.dispose();
 	}
@@ -51,22 +40,6 @@ public class Tile {
 
 	public void setBound(Rectangle bound) {
 		this.bound = bound;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
 	}
 	
 }
